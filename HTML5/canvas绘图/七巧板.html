@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #canvas,#canvas2{
+            display: block;
+            margin:50px auto;
+            border: 1px solid #777;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="1024" height="500" id="canvas"><!-- 行标签 -->
+        如果浏览器不支持canvas将显示这段文字，否则不显示；
+    </canvas><!-- canvas宽高最好在标签内设置，并且不用加px； -->
+    <canvas width="1024" height="500" id="canvas2">
+            如果浏览器不支持canvas将显示这段文字，否则不显示；
+    </canvas>
+</body>
+<script>
+    window.onload=function(){
+        var data=[{p:[{x:0,y:0},{x:250,y:250},{x:0,y:500},{color:'#f00'}]},
+            {p:[{x:0,y:0},{x:250,y:250},{x:500,y:0},{color:'#00f'}]},
+            {p:[{x:0,y:500},{x:250,y:500},{x:125,y:375},{color:'#f40'}]},
+            {p:[{x:250,y:500},{x:125,y:375},{x:250,y:250},{x:375,y:375},{color:'#f0f'}]},
+            {p:[{x:250,y:500},{x:500,y:250},{x:500,y:500},{color:'#f05'}]},
+            {p:[{x:375,y:375},{x:250,y:250},{x:375,y:125},{color:'#0f0'}]},
+            {p:[{x:500,y:0},{x:500,y:250},{x:375,y:375},{x:375,y:125},{color:'#0ff'}]}];
+        var canvas=document.querySelector('#canvas');
+        if(canvas.getContext('2d')){//判断浏览器支持情况
+            var context=canvas.getContext('2d');
+            console.log(context);
+            for(var i=0;i<data.length;i++){
+                drow(data[i],context);
+            }
+            function drow(data,cxt){
+                cxt.beginPath();
+                cxt.moveTo(data.p[0].x,data.p[0].y);
+                for(var i=0;i<data.p.length;i++){
+                cxt.lineTo(data.p[i].x,data.p[i].y);
+                }
+                cxt.closePath();       
+                cxt.lineWidth=5;//设置线条的宽度；
+                cxt.strokeStyle='#f00';//设置线条的颜色；
+                cxt.stroke();//用线条画出路径；
+            }   
+        }
+        var canvas2=document.querySelector('#canvas2');
+        if(canvas2.getContext('2d')){//判断浏览器支持情况
+            var context2=canvas2.getContext('2d');      
+            for(var i=0;i<data.length;i++){
+                drow(data[i],context2); 
+            }
+            function drow(data,cxt2){
+                cxt2.beginPath();//重新规划一个路径，如果没有closePath()，当再次调用beginPath()时同样可以重新开始；
+                cxt2.moveTo(data.p[0].x,data.p[0].y);
+                for(var i=0;i<data.p.length;i++){
+                    cxt2.lineTo(data.p[i].x,data.p[i].y);
+                }        
+                cxt2.closePath();//结束一个路径，会将路径中不封闭的首尾用直线链接起来；
+                cxt2.fillStyle=data.p[data.p.length-1].color;//封闭路径中的填充的颜色；                 
+                cxt2.fill();//绘制封闭的路径填充颜色图形；
+                cxt2.lineWidth=5;
+                cxt2.strokeStyle='#fff';
+                cxt2.stroke();//
+            }   
+        }
+    }
+    
+    
+</script>
+</html>

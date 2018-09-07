@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+	body{
+		margin:0;
+		padding:0;
+	}
+	/*当上下相邻元素或父子元素margin重合时定义下方元素或子元素float:left;或display:inline-block;*/
+		.div1{
+			width:200px;
+			height:200px;
+			background:#ccc;
+			margin:20px;
+			/* float:left; */
+			position: relative;
+		}
+		.div2{
+			width: 200px;
+			height:200px;
+			background:#ccc;
+			margin:10px;
+			/* float:left; */
+			display:inline-block;
+		}
+		.div3{
+			width:100px;
+			height:100px;
+			background: #eee;
+			margin:30px;
+			display:inline-block;
+		}
+	</style>
+</head>
+<body>
+	<div class="div1"><div class="div3"></div></div>
+	<div class="div2"></div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #canvas{
+            display: block;
+            margin:0 auto;
+            border: 1px solid #999;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="1000" height="500" id="canvas"></canvas>
+</body>
+<script>
+    let arr=['#f0f','#ff0','#454667','#589698','#f69543','#596895'];
+    let canvas=document.querySelector('#canvas');
+    let context=canvas.getContext('2d');
+    for(var i=0;i<10;i++){
+        context.beginPath();
+        context.arc(50+i*100,100,40,0,(2*i*Math.PI)/10,true);
+        context.closePath();//将弧度首尾连接；
+        context.stroke();
+    }
+    for(var i=0;i<10;i++){
+        context.beginPath();
+        context.arc(50+i*100,200,40,0,(2*i*Math.PI)/10,true);
+        context.stroke();
+    }
+    for(var i=0;i<10;i++){
+        let random=Math.round(5*Math.random());
+        context.beginPath();
+        context.arc(50+i*100,300,40,0,(2*i*Math.PI)/10,true);
+        context.fillStyle=arr[random];
+        context.closePath();
+        context.fill();
+    }
+    let j=0;
+    let begin=setInterval(function(){
+        if(j<100){
+            let random=Math.round(5*Math.random());
+            context.beginPath();
+            context.arc(Math.round(1000*Math.random()),Math.round(500*Math.random()),20,0,2*Math.PI);
+            context.closePath();//对填充图形无效；
+            context.fillStyle=arr[random];
+            context.fill();
+        }
+        else{
+            clearInterval(begin);
+        }
+        j++;
+    },100)
+</script>
+</html>

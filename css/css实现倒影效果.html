@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .reflection{
+            width:400PX;
+            height:200px;
+            margin:50px auto;
+            position: relative;
+        }
+        .img{
+            width:100%;
+            height:100%;
+        }
+        .cover{
+            position: absolute;
+            width:400px;
+            height:200px;
+            top:200px;
+            left:0;
+            background:url('1.jpg');
+            background-size: 400px 200px;
+            transform: scaleY(-1);
+        }
+        .cover:before{
+            content: '';
+            width:100%;
+            height:100%;
+            position: absolute;
+            background:linear-gradient(to bottom,rgba(255,255,255,1),rgba(255,255,255,0.1) 90%);
+        }
+    </style>
+</head>
+<body>
+    <div class="reflection">
+        <div class="img"><img src="1.jpg" alt="" width='100%' height='100%'></div>
+        <div class="cover"></div>
+    </div>
+</body>
+</html>

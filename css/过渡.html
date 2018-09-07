@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.div{
+			width: 200px;
+			height: 200px;
+			background: linear-gradient(to bottom,blue,red 50%, yellow);
+			transition: all 1s ease 3s;
+		}
+		.div:hover{width: 400px;height: 400px;background: linear-gradient(to bottom,yellow,blue,red); transition: all 1s ease-in-out;}
+		.div1 {
+    background-color: red;
+    width: 100px;
+    height: 50px;
+}
+#box1:hover {
+    width: auto;
+    transition: width 1s linear;
+}
+	</style>
+</head>
+<body>
+	<div class="div"></div>
+	<div id="box2" class="div1"></div>
+</body>
+<script type="text/javascript">
+window.onload = function(){
+    var box = document.getElementById("box2"),
+        originWidth = box.clientWidth,
+        width2AutoLater = null,
+        width2OriginLater = null;
+
+    var width2Auto = function(element, time) {
+        if (typeof window.getComputedStyle == "undefined") return;
+        
+        var width = window.getComputedStyle(element).width;
+        element.style.width = "auto";
+        var targetWidth = window.getComputedStyle(element).width;
+        element.style.width = width;
+        setTimeout(function() {
+            element.style.transition = "width "+ time +"ms linear";
+            element.style.width = targetWidth;
+        }, 10);
+    };
+
+    var width2Origin = function(element, time) {
+        setTimeout(function() {
+            element.style.transition = "width 0s linear";
+            element.style.width = originWidth + "px";
+        }, 10);
+    };
+
+    function callLater(func, paramA, paramB){  
+       return function(){  
+            func.call(this, paramA, paramB);  
+        };  
+    }  
+
+    width2AutoLater = callLater(width2Auto, box, 1000);
+    width2OriginLater = callLater(width2Origin, box, 1000);
+
+    box.addEventListener("mouseenter", width2AutoLater);
+    box.addEventListener("mouseleave", width2OriginLater);
+}
+</script>
+</html>
