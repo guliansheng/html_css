@@ -1,47 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <style>
-        .animation{
-            width:200px;
-            height:200px;
-            background:#ccc;
-            margin:200px auto;
-            animation:animate 4s 1s ease-in-out infinite alternate;
-        }
-        @keyframes animate {
-            0% {transform:translate(0,0) rotate(180deg); background:#ccc}
-            20% {transform:translate(50,50) scale(1.5); background:rgb(112, 17, 17)}
-            40% {transform:translate(0,0) scale(1); background:rgb(122, 85, 85)}
-            80% {transform:translate(100px,100px) scale(1.5);background:#ff0}
-            100% {transform:translate(0px,0px) scale(1);background:#ccc}
-        }
-        .move{
-            animation-play-state:paused;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+  blockquote, body, button, dd, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, hr, input, legend, li, ol, p, pre, td, textarea, th, ul{
+    margin: 0;
+    padding: 0;
+  }
+  img{
+    border:0;
+  }
+  ol, ul ,li{list-style: none;}
+  .animation {
+    width: 200px;
+    height: 200px;
+    background: #ccc;
+    margin: 200px auto;
+    -webkit-animation: animate 4s 1s ease-in-out infinite alternate;
+    animation: animate 4s 1s ease-in-out infinite alternate;
+  }
+
+  @-webkit-keyframes animate {
+    0% {
+      -webkit-transform: translate(0, 0) rotate(180deg);
+      transform: translate(0, 0) rotate(180deg);
+      background: #ccc;
+    }
+    20% {
+      -webkit-transform: translate(50px, 50px) scale(1.5);
+      transform: translate(50px, 50px) scale(1.5);
+      background: rgb(112, 17, 17);
+    }
+    40% {
+      -webkit-transform: translate(0, 0) scale(1);
+      transform: translate(0, 0) scale(1);
+      background: rgb(122, 85, 85);
+    }
+    80% {
+      -webkit-transform: translate(100px, 100px) scale(1.5);
+      transform: translate(100px, 100px) scale(1.5);
+      background: #ff0;
+    }
+    100% {
+      -webkit-transform: translate(0px, 0px) scale(1);
+      transform: translate(0px, 0px) scale(1);
+      background: #ccc;
+    }
+  }
+
+  @keyframes animate {
+    0% {
+      -webkit-transform: translate(0, 0) rotate(180deg);
+      transform: translate(0, 0) rotate(180deg);
+      background: #ccc;
+    }
+    20% {
+      -webkit-transform: translate(50px, 50px) scale(1.5);
+      transform: translate(50px, 50px) scale(1.5);
+      background: rgb(112, 17, 17);
+    }
+    40% {
+      -webkit-transform: translate(0, 0) scale(1);
+      transform: translate(0, 0) scale(1);
+      background: rgb(122, 85, 85);
+    }
+    80% {
+      -webkit-transform: translate(100px, 100px) scale(1.5);
+      transform: translate(100px, 100px) scale(1.5);
+      background: #ff0;
+    }
+    100% {
+      -webkit-transform: translate(0px, 0px) scale(1);
+      transform: translate(0px, 0px) scale(1);
+      background: #ccc;
+    }
+  }
+
+  .move {
+    -webkit-animation-play-state: paused;
+    animation-play-state: paused;
+  }
+  </style>
 </head>
+
 <body>
-    <div class="animation"></div>
+  <div class="animation"></div>
 </body>
 <script>
-    let aniobj=document.querySelector('.animation');
-    //~function fun(){}();自动执行函数，函数内部arguments.callee();执行函数自身;
-    ~function (num){
-        console.log(num);
-    }(1112222222);
-    ~function mousemove(){
-        aniobj.onmouseover=mousemove;
-        // this.setAttribute('class','animation move');此时this没有指向任何对象，所以不能调用setAttribute()方法来控制类；只能通过className来控制类
-        this.className='animation move';
-    }();
-    ~function (){
-        aniobj.onmouseout=arguments.callee;
-        this.className='animation';
-    }();
+let aniobj = document.querySelector('.animation');
+//~function fun(){}();自动执行函数，函数内部arguments.callee();执行函数自身;
+~ function(num) {
+  console.log(num);
+}(1112222222);
+~ function mousemove() {
+  aniobj.onmouseover = mousemove;
+  // this.setAttribute('class','animation move');此时this没有指向任何对象，所以不能调用setAttribute()方法来控制类；只能通过className来控制类
+  this.className = 'animation move';
+}();
+~ function() {
+  aniobj.onmouseout = arguments.callee;
+  this.className = 'animation';
+}();
 </script>
+
 </html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style type="text/css">
+  .table_specs {
+    margin-top: 50px;
+  }
+  </style>
+</head>
+
+<body>
+<!-- 新增表单元素一般只有IE10及以上支持 -->
+  <form action="">
+    <input type="time" value="10:00">
+    <input type="date">
+    <input type="datetime-local">
+    <input type="email">
+    <input type="range">
+    <input type="submit">
+    <input type="text" id="department" list="departmentList">
+    <datalist id="departmentList">
+        <option value="市场部" label='提示信息'>市场部</option>
+        <option value="技术部">技术部</option>
+        <option value="总裁办">总裁办</option>
+    </datalist>
+  </form>
+  <!-- 进度条 -->
+  <progress></progress>
+  <progress value="20" max="100"></progress>
+  <!-- 度量器 -->
+  <meter value="50" min="0" low="30" high="70" max="100"></meter>
+  <meter value="80" min="0" low="30" high="70" max="100"></meter>
+  <meter value="10" min="0" low="30" high="70" max="100"></meter>
+</body>
+
+</html>

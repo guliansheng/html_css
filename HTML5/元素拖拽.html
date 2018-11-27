@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <style type="text/css">
+    *{
+      margin:0;
+      padding:0;
+    }
+    #dragbox {
+      width: 100%;
+      height: 200px;
+    }
+    div{
+      width: 300px;
+      height:150px;
+      border:1px solid red;
+      margin:20px;
+      float:left;
+    }
+  </style>
+</head>
+<body>
+<!-- 需要拖拽的元素身上添加属性draggable = 'true'; -->
+  <div id = 'dragbox'>
+    <div id="box1">
+      <p class='span' draggable = 'true' style = 'background: green'>这是拖拽元素1</p>
+      <p class='span' draggable = 'true' style = 'background: green'>这是拖拽元素2</p>
+      <p class='span' draggable = 'true' style = 'background: green'>这是拖拽元素3</p>
+      <p class='span' draggable = 'true' style = 'background: green'>这是拖拽元素4</p>
+    </div>
+    <div id="box2">
+      <p class='span' draggable = 'true' style = 'background: green'>这是拖拽元素7</p>
+      <p class='span' draggable = 'true' style = 'background: green'>这是拖拽元素7</p>
+      <p class='span' draggable = 'true' style = 'background: green'>这是拖拽元素7</p>
+      <p class='span' draggable = 'true' style = 'background: green'>这是拖拽元素7</p>
+    </div>
+  </div>
+  <div id="box"></div>
+</body>
+<script type="text/javascript">
+  // 拖拽元素
+  // ondrag   应用于拖接元素，整个拖摸过程都会调用，持续触发
+  // ondragstart  应用于拖接元素，当拖接开始时调用
+  // ondragleave  应用于拖搜元素，当鼠标离开拖搜元素时调用
+  // ondragend  应用于拖拽元素，当拖拽结束时调用
+
+  // 目标元素
+  // ondragenter  应用于目标元素，当拖接元素进入时调用
+  // ondragover   应用于目标元素，当停留在目标元素上时调用
+  // ondrop       应用于目标元素，当在目标元素上松开鼠标时调用
+  // ondragleave  应用于目标元素，当鼠标离开目标元素时调用
+
+
+  //dragBox盒子中的可拖拽元素，都可拖到tarBox盒子中
+  function drag (dragBox,tarBox){
+    var el = null
+    var event = null
+    dragBox.ondragstart = function(event){
+      event = event || window.event
+      el = event.target || event.srcElement
+    }
+    tarBox.ondragover = function(event){
+      event.preventDefault()
+    }
+    tarBox.ondrop = function(){
+      tarBox.appendChild(el)
+    }
+  }
+  drag(dragbox,box)
+  drag(box,dragbox)
+
+  // span.ondragstart = function(){
+  //   console.log('开始')
+  // }
+  // span.ondragleave = function(){
+  //   console.log('离开元素')
+  // }
+  // span.ondragend = function(){
+  //   console.log('拖拽结束')
+  // }
+
+
+
+  // var box2 = document.querySelector('#box2')
+  // box2.ondragenter = function(){
+  //   console.log('拖拽元素进入');
+  // }
+  //
+  //
+  // box2.ondragover = function(e){
+  //   e.preventDefault()
+  //   console.log('拖拽元素停留在目标元素上')
+  // }
+  //
+  //
+  // // 浏览器默认阻止ondrop事件触发，想要触发则需要在ondragover中阻止浏览器默认行为
+  // box2.ondrop = function(){
+  //   console.log('在目标元素上松开鼠标')
+  //   this.appendChild(span)
+  // }
+  //
+  //
+  // box2.ondragleave = function(){
+  //   console.log('ondragleave')
+  // }
+</script>
+</html>
