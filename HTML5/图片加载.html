@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+    <img src="./2.jpg" alt="" id='img1'>
+    <img src="./11.jpg" alt="" id='img2'>
+    </body>
+    <script>
+        var img1 = document.getElementById('img1')
+        var img2 = document.getElementById('img2')
+        img2.style.display='none';
+        img2.onload=function  () {
+          console.log(1)
+          this.style.display='block';
+          img1.style.display='none'
+        }
+    </script>
+</html>
